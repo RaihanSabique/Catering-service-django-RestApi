@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from userapi import views
 
+api_patterns = [
+    path('', include('auth_fb.urls')),
+]
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
+    path('api/v0/', include(api_patterns)),
+    # url(r'^createuser/', views.CreateUserAPIView.as_view()),
+    # url(r'^login/', views.login),
+
 ]
